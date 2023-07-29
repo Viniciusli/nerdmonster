@@ -31,7 +31,7 @@ export default function Results() {
                     <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                     </div>
                 </div>
-                </div> 
+                </div>
                 <div className="drawer-side">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label> 
                 <ul className="menu p-4 w-80 h-full bg-base-200">

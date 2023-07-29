@@ -24,18 +24,20 @@ export default function Home() {
             </div>
           </div>
           {/* Page content here */}
-          <div className="flex flex-col justify-center p-10 gap-6">
-            <div className="form-control max-w-xs">
-              <label className="label">
-                <span className="label-text">Nome</span>
-              </label>
-              <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-            </div>
-            <div className="form-control max-w-xs">
-              <label className="label">
-                <span className="label-text">Número</span>
-              </label>
-              <input type="number"  placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          <div className="flex justify-center">
+            <div className="flex flex-col justify-center p-10 gap-6">
+              <div className="form-control max-w-xs">
+                <label className="label">
+                  <span className="label-text">Nome</span>
+                </label>
+                <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+              </div>
+              <div className="form-control max-w-xs">
+                <label className="label">
+                  <span className="label-text">Número</span>
+                </label>
+                <input type="number"  placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+              </div>
             </div>
           </div>
         </div> 

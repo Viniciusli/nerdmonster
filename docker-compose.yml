@@ -6,14 +6,6 @@ services:
       context: ./front
       dockerfile: Dockerfile
 
-    # Set environment variables directly in the docker-compose file
-    # environment:
-    #   ENV_VARIABLE: ${ENV_VARIABLE}
-    #   NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-
-    # Set envrionment variables based on the .env file
-    # env_file:
-    #   - .env
     volumes:
       - ./front/src:/app/src
       - ./front/public:/app/public
@@ -39,34 +31,6 @@ services:
     networks:
       - loteria
 
-  # front:
-  #     container_name: front
-  #     build:
-  #       context: .dockerfiles
-  #       dockerfile: DockerfileFrontend
-  #     ports:
-  #       - 8080:5173
-  #     volumes:
-  #       - ./front:/app
-  #       - ./front:/node_modules
-  #     command: 'npm run dev'
-      # depends_on:
-      #   - back
-  # back:
-  #     container_name: back
-  #     build:
-  #       context: .dockerfiles
-  #       dockerfile: DockerfileBackend
-  #     ports:
-  #       - 8888:8888
-  #     volumes:
-  #       - ./back:/app
-  #     command: 'composer startup'
-  #     restart: always
-  #     depends_on:
-  #       - banco
-  #     networks:
-  #       - loteria
   banco:
       image: mysql:5.7
       container_name: banco
@@ -75,12 +39,12 @@ services:
       volumes:
         - ./banco:/var/lib/mysql
       environment:
-        - MYSQL_DATABASE=loteria
-        - MYSQL_ROOT_PASSWORD=loteria
-        - MYSQL_USER=loteria
-        - MYSQL_PASSWORD=loteria
+        MYSQL_DATABASE: 'loteria'
+        MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        MYSQL_ROOT_PASSWORD: ""
       networks:
         - loteria
+        
 networks:
   loteria:
     driver: bridge
