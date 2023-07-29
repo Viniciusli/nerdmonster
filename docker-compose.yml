@@ -5,7 +5,6 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile
-
     volumes:
       - ./front/src:/app/src
       - ./front/public:/app/public
@@ -39,12 +38,13 @@ services:
       volumes:
         - ./banco:/var/lib/mysql
       environment:
-        MYSQL_DATABASE: 'loteria'
-        MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        MYSQL_ROOT_PASSWORD: ""
+        - MYSQL_DATABASE=loteria
+        - MYSQL_ROOT_PASSWORD=loteria
+        - MYSQL_USER=loteria
+        - MYSQL_PASSWORD=loteria
       networks:
         - loteria
-        
+
 networks:
   loteria:
     driver: bridge
