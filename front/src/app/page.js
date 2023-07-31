@@ -1,7 +1,33 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from "react";
 
 export default function Home() {
+  const [name, setName] = useState('')
+  const [numbers, setNumbers] = useState('')
+
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleNumbers = (event) => {
+    setNumbers(event.target.value);
+  };
+
+  const enviar = async (e) => {
+    e.preventDefault();
+
+    const formData =
+    {
+      name: name,
+      numbers: numbers
+    }
+
+    console.log(formData);
+
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="drawer">
@@ -25,20 +51,21 @@ export default function Home() {
           </div>
           {/* Page content here */}
           <div className="flex justify-center">
-            <div className="flex flex-col justify-center p-10 gap-6">
+            <form onSubmit={enviar} className="flex flex-col justify-center p-10 gap-6">
               <div className="form-control max-w-xs">
                 <label className="label">
                   <span className="label-text">Nome</span>
                 </label>
-                <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                <input onChange={handleName} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
               </div>
               <div className="form-control max-w-xs">
                 <label className="label">
                   <span className="label-text">Número</span>
                 </label>
-                <input type="number"  placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                <input onChange={handleNumbers} type="numbers" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
               </div>
-            </div>
+              <button type="submit" className="btn btn-primary">Enviar</button>
+            </form>
           </div>
         </div> 
         <div className="drawer-side">
