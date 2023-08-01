@@ -47,8 +47,8 @@ export default function Results() {
                     </div>
                 </div>
                 {/* Page content here */}
-                <div className="flex justify-center p-10 gap-6">
-                    <form onSubmit={enviar} className="flex flex-col form-control max-w-xs">
+                <div className="flex justify-center">
+                    <form onSubmit={enviar} className="flex flex-col form-control max-w-xs p-10 gap-6">
                         <div className="form-control max-w-xs">
                             <label className="label">
                                 <span className="label-text">Ticket Code</span>

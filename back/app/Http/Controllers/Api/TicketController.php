@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\TicketHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketRequest;
 use App\Models\Ticket;
-use App\Services\TicketService;
+use App\Repositories\TicketRepository;
+use App\Services\CreateTicketService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
-    protected TicketService $ticketService;
+    protected CreateTicketService $ticketService;
+    protected TicketRepository $ticketRepository;
 
-    public function __construct(TicketService $ticketService)
+    public function __construct(CreateTicketService $ticketService, TicketRepository $ticketRepository)
     {
         $this->ticketService = $ticketService;
+        $this->ticketRepository = $ticketRepository;
     }
 
     public function store(TicketRequest $request): JsonResponse
@@ -29,14 +33,14 @@ class TicketController extends Controller
 
     public function get($ticketCode): JsonResponse
     {
-        $ticket = $this->ticketService->getByTicketCode($ticketCode);
+        $ticket = $this->ticketRepository->getByTicketCode($ticketCode);
 
         return response()->json([
             'name' => $ticket->name,
             'yourNumbers' => $ticket->numbers,
             'machineNumbers' => $ticket->result,
-            'winner' => $this->ticketService->isWinner($ticket),
-            'message' => $this->ticketService->getMessage($ticket),
+            'winner' => TicketHelper::isWinner($ticket),
+            'message' => TicketHelper::getMessage($ticket),
         ]);
     }
 }
