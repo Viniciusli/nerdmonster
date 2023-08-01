@@ -21,7 +21,26 @@ export default function Results() {
         })
         .then(response => response.json())
         .then(data => {
-          setMessage(data.message)
+            const message = document.querySelector('#message')
+
+            console.log(message);
+
+            if (data.machineNumbers === null) {
+                message.classList.add('alert-info')
+            }
+
+            if (data.machineNumbers !== null && data.winner === false) {
+                message.classList.add('alert-error')
+            }
+
+            if (data.machineNumbers !== null && data.winner === false) {
+                message.classList.add('alert-success')
+            }
+
+            message.textContent = data.message
+            message.classList.remove('hidden')
+
+            setMessage(data.message)
         })
     };
 
@@ -60,7 +79,7 @@ export default function Results() {
                     </form>
 
                     <div className="toast toast-center">
-                        <div className="alert alert-success" id="ticketCode">
+                        <div className="alert hidden" id="message">
                             <span>{message}</span>
                         </div>
                     </div>

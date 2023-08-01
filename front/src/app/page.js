@@ -39,7 +39,6 @@ export default function Home() {
     console.log(JSON.stringify(formData));
 
     await fetch('http://localhost:8080/api/create-ticket', {
-      mode: 'no-cors',
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -49,8 +48,8 @@ export default function Home() {
     .then(response => response.json())
     .then(data => {
       setTicket(data.ticketCode)
+      document.querySelector('#ticket').classList.remove('hidden')
     })
-
   };
 
   return (
@@ -103,7 +102,7 @@ export default function Home() {
               <button type="submit" className="btn btn-primary">Enviar</button>
             </form>
 
-            <div className="toast toast-center">
+            <div id="ticket" className="toast toast-center hidden">
               <div className="alert alert-success" id="ticketCode">
                 <span>Ticket Code: {ticketCode}</span>
               </div>
