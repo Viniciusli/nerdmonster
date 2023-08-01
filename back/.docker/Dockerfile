@@ -20,5 +20,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
  docker-php-ext-install pdo_mysql
 
 RUN chown -R www-data:www-data /app \
-    && a2enmod rewrite \
-    chmod -R 777 /app/storage
+    && a2enmod rewrite
