@@ -1,6 +1,30 @@
+"use client"
 import Link from 'next/link'
+import { useState } from "react";
 
 export default function Results() {
+    const [ticketCode, setTicket] = useState('')
+    const [message, setMessage] = useState('')
+
+    const handleTicket = (event) => {
+        setTicket(event.target.value);
+    };
+
+    const enviar = async (e) => {
+        e.preventDefault();
+        
+        await fetch('http://localhost:8080/api/ticket/'+ticketCode, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          setMessage(data.message)
+        })
+    };
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-between">
             <div className="drawer">
@@ -23,14 +47,26 @@ export default function Results() {
                     </div>
                 </div>
                 {/* Page content here */}
-                <div className="flex flex-col justify-center p-10 gap-6">
-                    <div className="form-control max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Ticket Code</span>
-                    </label>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                <div className="flex justify-center p-10 gap-6">
+                    <form onSubmit={enviar} className="flex flex-col form-control max-w-xs">
+                        <div className="form-control max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Ticket Code</span>
+                            </label>
+                            <input onChange={handleTicket} name="ticket" type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">Enviar</button>
+                    </form>
+
+                    <div className="toast toast-center">
+                        <div className="alert alert-success" id="ticketCode">
+                            <span>{message}</span>
+                        </div>
                     </div>
                 </div>
+
+
                 </div>
                 <div className="drawer-side">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label> 

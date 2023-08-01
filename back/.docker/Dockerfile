@@ -22,5 +22,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json composer.lock ./
 RUN composer install --no-scripts --no-autoloader
 
-RUN chown -R www-data:www-data /app \
-    && a2enmod rewrite
+RUN chown -R www-data:www-data /app
