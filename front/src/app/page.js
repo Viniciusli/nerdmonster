@@ -75,14 +75,14 @@ export default function Home() {
           </div>
           {/* Page content here */}
           <div className="basis-1/2 flex justify-center">
-            <form onSubmit={enviar} className="flex flex-col justify-center p-10 gap-6">
-              <div className="form-control max-w-xs">
+            <form onSubmit={enviar} className="flex flex-col justify-center p-10 gap-6 w-1/2">
+              <div className="form-control ">
                 <label className="label" htmlFor="name">
                   <span className="label-text">Nome</span>
                 </label>
-                <input onChange={handleName} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                <input onChange={handleName} type="text" placeholder="Type here" className="input input-bordered w-full " />
               </div>
-              <div className="form-control max-w-xs">
+              <div className="form-control ">
                 <label className="label" htmlFor="numbers">
                   <span className="label-text">Números</span>
                 </label>
@@ -92,7 +92,7 @@ export default function Home() {
                       key={index}
                       onChange={(event) => handleNumberChange(index, event)}
                       type="text"
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered w-full "
                       value={value}
                       maxLength={1}
                     />

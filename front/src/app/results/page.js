@@ -40,7 +40,7 @@ export default function Results() {
             message.textContent = data.message
             message.classList.remove('hidden')
 
-            setMessage(data.message)
+            setMessage(data.message )
         })
     };
 
